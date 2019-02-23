@@ -1,15 +1,17 @@
 defmodule SchedyWeb.Application do
+  # See https://hexdocs.pm/elixir/Application.html
+  # for more information on OTP Applications
+  @moduledoc false
+
   use Application
 
   def start(_type, _args) do
-    import Supervisor.Spec
-
-    # Define workers and child supervisors to be supervised
+    # List all child processes to be supervised
     children = [
       # Start the endpoint when the application starts
-      supervisor(SchedyWeb.Endpoint, []),
-      # Start your own worker by calling: SchedyWeb.Worker.start_link(arg1, arg2, arg3)
-      # worker(SchedyWeb.Worker, [arg1, arg2, arg3]),
+      SchedyWeb.Endpoint
+      # Starts a worker by calling: SchedyWeb.Worker.start_link(arg)
+      # {SchedyWeb.Worker, arg},
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

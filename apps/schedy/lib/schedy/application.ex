@@ -1,19 +1,15 @@
 defmodule Schedy.Application do
-  @moduledoc """
-  The Schedy Application Service.
+  # See https://hexdocs.pm/elixir/Application.html
+  # for more information on OTP Applications
+  @moduledoc false
 
-  The schedy system business domain lives in this application.
-
-  Exposes API to clients such as the `SchedyWeb` application
-  for use in channels, controllers, and elsewhere.
-  """
   use Application
 
   def start(_type, _args) do
-    import Supervisor.Spec, warn: false
+    children = [
+      Schedy.Repo
+    ]
 
-    Supervisor.start_link([
-      supervisor(Schedy.Repo, []),
-    ], strategy: :one_for_one, name: Schedy.Supervisor)
+    Supervisor.start_link(children, strategy: :one_for_one, name: Schedy.Supervisor)
   end
 end
