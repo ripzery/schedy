@@ -1,9 +1,9 @@
-defmodule SchedyWeb.MixProject do
+defmodule SchedyAPI.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :schedy_web,
+      app: :schedy_api,
       version: "0.1.0",
       build_path: "../../_build",
       config_path: "../../config/config.exs",
@@ -23,7 +23,7 @@ defmodule SchedyWeb.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {SchedyWeb.Application, []},
+      mod: {SchedyAPI.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

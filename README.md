@@ -1,1 +1,1 @@
-# Schedy.Umbrella
+# Schedy

@@ -1,5 +1,5 @@
-defmodule SchedyWeb.ErrorView do
-  use SchedyWeb, :view
+defmodule SchedyAPI.ErrorView do
+  use SchedyAPI, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.

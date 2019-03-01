@@ -1,5 +1,5 @@
 # Since configuration is shared in umbrella projects, this file
-# should only configure the :schedy_web application itself
+# should only configure the :schedy_api application itself
 # and only for organization purposes. All other config goes to
 # the umbrella root.
 use Mix.Config
@@ -10,7 +10,7 @@ use Mix.Config
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :schedy_web, SchedyWeb.Endpoint,
+config :schedy_api, SchedyAPI.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,

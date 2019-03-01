@@ -1,4 +1,4 @@
-defmodule SchedyWeb.ChannelCase do
+defmodule SchedyAPI.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -21,7 +21,7 @@ defmodule SchedyWeb.ChannelCase do
       use Phoenix.ChannelTest
 
       # The default endpoint for testing
-      @endpoint SchedyWeb.Endpoint
+      @endpoint SchedyAPI.Endpoint
     end
   end
 

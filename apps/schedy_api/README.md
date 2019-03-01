@@ -1,4 +1,4 @@
-# SchedyWeb
+# SchedyAPI
 
 To start your Phoenix server:
 

@@ -1,7 +1,7 @@
-defmodule SchedyWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :schedy_web
+defmodule SchedyAPI.Endpoint do
+  use Phoenix.Endpoint, otp_app: :schedy_api
 
-  socket "/socket", SchedyWeb.UserSocket,
+  socket "/socket", SchedyAPI.UserSocket,
     websocket: true,
     longpoll: false
 
@@ -11,7 +11,7 @@ defmodule SchedyWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :schedy_web,
+    from: :schedy_api,
     gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
@@ -37,8 +37,8 @@ defmodule SchedyWeb.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   plug Plug.Session,
     store: :cookie,
-    key: "_schedy_web_key",
+    key: "_schedy_api_key",
     signing_salt: "HWRJf/Pb"
 
-  plug SchedyWeb.Router
+  plug SchedyAPI.Router
 end

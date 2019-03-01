@@ -1,4 +1,4 @@
-defmodule SchedyWeb.ErrorHelpers do
+defmodule SchedyAPI.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -25,9 +25,9 @@ defmodule SchedyWeb.ErrorHelpers do
     # should be written to the errors.po file. The :count option is
     # set by Ecto and indicates we should also apply plural rules.
     if count = opts[:count] do
-      Gettext.dngettext(SchedyWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(SchedyAPI.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(SchedyWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(SchedyAPI.Gettext, "errors", msg, opts)
     end
   end
 end
