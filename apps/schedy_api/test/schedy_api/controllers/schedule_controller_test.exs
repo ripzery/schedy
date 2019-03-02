@@ -20,4 +20,16 @@ defmodule SchedyAPI.ScheduleControllerTest do
 
     assert data == expected_data
   end
+
+  test "POST /api/schedule.add" do
+    response = post_request("/api/schedule.add", %{from: "07:00", to: "14:00"})
+    assert response["status"] == "ok"
+  end
+
+  test "POST /api/schedule.delete" do
+    %{"id" => id} = post_request("/api/schedule.add", %{from: "07:00", to: "14:00"})
+    response = post_request("/api/schedule.delete", %{id: id})
+
+    assert response["status"] == "ok"
+  end
 end

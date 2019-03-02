@@ -12,9 +12,12 @@ defmodule SchedyAPI.ScheduleView do
     schedule
   end
 
-  def render("schedule.add.json", _) do
+  def render("schedule.add.json", data) do
     %{
-      status: "ok"
+      status: "ok",
+      id: data.id,
+      from: data.from,
+      to: data.to
     }
   end
 
