@@ -3,8 +3,8 @@ defmodule Schedy.Schedule do
   import Ecto.Changeset
 
   schema "schedule" do
-    field :end, :string
-    field :start, :string
+    field :from, :string
+    field :to, :string
 
     timestamps()
   end
@@ -12,7 +12,7 @@ defmodule Schedy.Schedule do
   @doc false
   def changeset(schedule, attrs) do
     schedule
-    |> cast(attrs, [:start, :end])
-    |> validate_required([:start, :end])
+    |> cast(attrs, [:from, :to])
+    |> validate_required([:from, :to])
   end
 end
