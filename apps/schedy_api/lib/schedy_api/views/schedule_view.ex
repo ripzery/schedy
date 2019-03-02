@@ -17,4 +17,13 @@ defmodule SchedyAPI.ScheduleView do
       status: "ok"
     }
   end
+
+  def render("schedule.delete.json", data) do
+    %{
+      status: "ok",
+      id: data.id,
+      from: data.from,
+      to: data.to
+    }
+  end
 end

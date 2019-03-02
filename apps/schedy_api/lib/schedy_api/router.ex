@@ -11,5 +11,6 @@ defmodule SchedyAPI.Router do
     get("/", IndexController, :index)
     get("/schedule.all", ScheduleController, :all)
     post("/schedule.add", ScheduleController, :add)
+    post("/schedule.delete", ScheduleController, :delete)
   end
 end

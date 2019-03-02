@@ -9,8 +9,28 @@ defmodule SchedyAPI.ScheduleController do
     render(conn, "schedule.add.json", schedule)
   end
 
+  def delete(conn, %{"id" => id}) do
+    {:ok, data} =
+      Schedule
+      |> Repo.get(id)
+      |> Repo.delete()
+
+    render(conn, "schedule.delete.json", data)
+  end
+
   def all(conn, attrs) do
-    data = Repo.all(from s in Schedule, select: %{id: s.id, from: s.from, to: s.to, inserted_at: s.inserted_at, object: "schedule"})
+    data =
+      Repo.all(
+        from(s in Schedule,
+          select: %{
+            id: s.id,
+            from: s.from,
+            to: s.to,
+            inserted_at: s.inserted_at,
+            object: "schedule"
+          }
+        )
+      )
 
     render(conn, "schedules.json", %{data: data})
   end
