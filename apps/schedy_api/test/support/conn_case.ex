@@ -13,7 +13,10 @@ defmodule SchedyAPI.ConnCase do
   of the test unless the test case is marked as async.
   """
 
+  use Phoenix.ConnTest
   use ExUnit.CaseTemplate
+
+  @endpoint SchedyAPI.Endpoint
 
   using do
     quote do
@@ -34,5 +37,19 @@ defmodule SchedyAPI.ConnCase do
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}
+  end
+
+  def get_request(endpoint, attrs \\ %{}) do
+    build_conn()
+    |> get(endpoint, attrs)
+    |> response(200)
+    |> Jason.decode!()
+  end
+
+  def post_request(endpoint, attrs \\ %{}) do
+    build_conn()
+    |> post(endpoint, attrs)
+    |> response(200)
+    |> Jason.decode!()
   end
 end

@@ -2,13 +2,14 @@ defmodule SchedyAPI.Router do
   use SchedyAPI, :router
 
   pipeline :api do
-    plug :accepts, ["json"]
+    plug(:accepts, ["json"])
   end
 
   scope "/api", SchedyAPI do
-    pipe_through :api
+    pipe_through(:api)
 
-    get "/", ScheduleController, :index
-    get "/:page", ScheduleController, :index
+    get("/", IndexController, :index)
+
+    get("/schedule.all", ScheduleController, :all)
   end
 end
