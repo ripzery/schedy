@@ -10,26 +10,8 @@ defmodule SchedyAPI.ScheduleController do
   end
 
   def all(conn, attrs) do
-    sample = %{
-      data: [
-        %{
-          object: "schedule",
-          from: "07:00",
-          to: "14:00"
-        },
-        %{
-          object: "schedule",
-          from: "08:00",
-          to: "20:00"
-        },
-        %{
-          object: "schedule",
-          from: "09:00",
-          to: "23:00"
-        }
-      ]
-    }
+    data = Repo.all(from s in Schedule, select: %{id: s.id, from: s.from, to: s.to, inserted_at: s.inserted_at, object: "schedule"})
 
-    render(conn, "schedules.json", sample)
+    render(conn, "schedules.json", %{data: data})
   end
 end
