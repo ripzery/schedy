@@ -3,7 +3,6 @@ defmodule SchedyAPI.ScheduleView do
   alias SchedyAPI.ScheduleView
 
   def render("schedules.json", %{data: schedules}) do
-    IO.inspect schedules
     %{
       data: render_many(schedules, ScheduleView, "schedule.json")
     }
@@ -11,5 +10,11 @@ defmodule SchedyAPI.ScheduleView do
 
   def render("schedule.json", %{schedule: schedule}) do
     schedule
+  end
+
+  def render("schedule.add.json", _) do
+    %{
+      status: "ok"
+    }
   end
 end

@@ -9,7 +9,7 @@ defmodule SchedyAPI.Router do
     pipe_through(:api)
 
     get("/", IndexController, :index)
-
     get("/schedule.all", ScheduleController, :all)
+    post("/schedule.add", ScheduleController, :add)
   end
 end
