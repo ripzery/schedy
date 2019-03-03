@@ -21,8 +21,8 @@ defmodule Schedy.Schedule do
     schedule
     |> cast(attrs, [:from, :to])
     |> validate_required([:from, :to])
-    |> validate_format(:from, ~r/^([0-1][0-9]|[2][0-3]):([0-5][0-9])$/, [message: @error.format])
-    |> validate_format(:to, ~r/^([0-1][0-9]|[2][0-3]):([0-5][0-9])$/, [message: @error.format])
+    |> validate_format(:from, ~r/^([0-1][0-9]|[2][0-3]):([0-5][0-9])$/, message: @error.format)
+    |> validate_format(:to, ~r/^([0-1][0-9]|[2][0-3]):([0-5][0-9])$/, message: @error.format)
   end
 
   def all() do
@@ -51,7 +51,9 @@ defmodule Schedy.Schedule do
   end
 
   def delete(id) do
-    get(id)
-    |> Repo.delete()
+    case get(id) do
+      nil -> {:error, nil}
+      schedule -> Repo.delete(schedule)
+    end
   end
 end

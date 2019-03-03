@@ -20,8 +20,10 @@ defmodule SchedyAPI.ScheduleController do
   end
 
   def delete(conn, %{"id" => id}) do
-    {:ok, data} = Schedule.delete(id)
-    render(conn, "schedule.delete.json", data)
+    case Schedule.delete(id) do
+      {:error, _} -> ErrorHandler.handle_error(conn, 400, "error:schedule_id_not_found")
+      {:ok, schedule} -> render(conn, "schedule.delete.json", schedule)
+    end
   end
 
   def all(conn, attrs) do
