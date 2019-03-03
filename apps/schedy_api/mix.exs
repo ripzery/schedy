@@ -42,7 +42,8 @@ defmodule SchedyAPI.MixProject do
       {:phoenix_ecto, "~> 4.0"},
       {:gettext, "~> 0.11"},
       {:schedy, in_umbrella: true},
-      {:jason, "~> 1.0"},
+      {:jason, "~> 1.1"},
+      {:poison, "~> 3.1"},
       {:plug_cowboy, "~> 2.0"}
     ]
   end

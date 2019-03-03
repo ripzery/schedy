@@ -43,13 +43,13 @@ defmodule SchedyAPI.ConnCase do
     build_conn()
     |> get(endpoint, attrs)
     |> response(200)
-    |> Jason.decode!()
+    |> Poison.decode!()
   end
 
   def post_request(endpoint, attrs \\ %{}) do
     build_conn()
     |> post(endpoint, attrs)
     |> response(200)
-    |> Jason.decode!()
+    |> Poison.decode!()
   end
 end
