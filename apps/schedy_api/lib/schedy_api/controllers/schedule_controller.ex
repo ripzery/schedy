@@ -12,9 +12,11 @@ defmodule SchedyAPI.ScheduleController do
 
   def get(conn, _), do: ErrorHandler.handle_error(conn, 400, "error:schedule_id_not_found")
 
-  def add(conn, %{"from" => from, "to" => to}) do
-    {:ok, schedule} = Schedule.add(from, to)
-    render(conn, "schedule.add.json", schedule)
+  def add(conn, attrs) do
+    case Schedule.add(attrs) do
+      {:error, changeset} -> ErrorHandler.handle_error(conn, 400, changeset)
+      {:ok, schedule} -> render(conn, "schedule.add.json", schedule)
+    end
   end
 
   def delete(conn, %{"id" => id}) do

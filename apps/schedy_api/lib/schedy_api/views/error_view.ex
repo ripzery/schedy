@@ -1,5 +1,7 @@
 defmodule SchedyAPI.ErrorView do
   use SchedyAPI, :view
+  alias SchedyAPI.ErrorHelpers
+  alias Ecto.Changeset
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.
@@ -18,6 +20,13 @@ defmodule SchedyAPI.ErrorView do
         code: code,
         description: description
       }
+    }
+  end
+
+  def render("errors.json", changeset) do
+    %{
+      status: "wtf",
+      errors: Changeset.traverse_errors(changeset, &ErrorHelpers.translate_error/1)
     }
   end
 

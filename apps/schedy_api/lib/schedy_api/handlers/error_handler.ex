@@ -13,12 +13,18 @@ defmodule SchedyAPI.ErrorHandler do
     }
   }
 
-  def handle_error(conn, code, key) do
+  def handle_error(conn, code, key) when is_binary(key) do
     error = Map.get(@errors, key, "_")
 
     conn
     |> build_error_conn(code)
     |> render_error(error)
+  end
+
+  def handle_error(conn, code, changeset) do
+    conn
+    |> build_error_conn(code)
+    |> render_errors(changeset)
   end
 
   defp build_error_conn(conn, code) do
@@ -29,5 +35,9 @@ defmodule SchedyAPI.ErrorHandler do
 
   defp render_error(conn, error) do
     render(conn, "error.json", error)
+  end
+
+  defp render_errors(conn, changeset) do
+    render(conn, "errors.json", changeset)
   end
 end
