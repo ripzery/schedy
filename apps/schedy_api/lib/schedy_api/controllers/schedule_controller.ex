@@ -4,6 +4,11 @@ defmodule SchedyAPI.ScheduleController do
   alias Schedy.Schedule
   import Ecto.Query
 
+  def get(conn, %{"id" => id}) do
+    result = Repo.get(Schedule, id)
+    render(conn, "schedule.get.json", result)
+  end
+
   def add(conn, %{"from" => from, "to" => to}) do
     {:ok, schedule} = Repo.insert(%Schedule{from: from, to: to})
     render(conn, "schedule.add.json", schedule)

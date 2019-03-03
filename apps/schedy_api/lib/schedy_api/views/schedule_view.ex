@@ -4,7 +4,26 @@ defmodule SchedyAPI.ScheduleView do
 
   def render("schedules.json", %{data: schedules}) do
     %{
-      data: render_many(schedules, ScheduleView, "schedule.json")
+      status: "ok",
+      data: %{
+        object: "list",
+        data: render_many(schedules, ScheduleView, "schedule.json")
+      }
+    }
+  end
+
+  def render("schedule.get.json", schedule) do
+    %{
+      status: "ok",
+      data: %{
+        object: "object",
+        data: %{
+          id: schedule.id,
+          from: schedule.from,
+          to: schedule.to,
+          inserted_at: schedule.inserted_at
+        }
+      }
     }
   end
 
@@ -15,18 +34,28 @@ defmodule SchedyAPI.ScheduleView do
   def render("schedule.add.json", data) do
     %{
       status: "ok",
-      id: data.id,
-      from: data.from,
-      to: data.to
+      data: %{
+        object: "object",
+        data: %{
+          id: data.id,
+          from: data.from,
+          to: data.to
+        }
+      }
     }
   end
 
   def render("schedule.delete.json", data) do
     %{
       status: "ok",
-      id: data.id,
-      from: data.from,
-      to: data.to
+      data: %{
+        object: "object",
+        data: %{
+          id: data.id,
+          from: data.from,
+          to: data.to
+        }
+      }
     }
   end
 end
